@@ -72,32 +72,6 @@ public class Vector {
         }
         return 0;
     }
-    public static int searchElementBinary(int[] v, int n){
-        int L = 0;
-        int R = v.length - 1;
-        int nX = -1;
-        for (int j = 0; j < v.length; j++) {
-            while (L <= R) {
-                int k = (L + R) / 2;
-                if (k == n) {
-                    nX = k;
-                    break;
-                }
-                else if (k < n) {
-                    R = k - 1;
-                }
-                else if (k > n) {
-                    L = k + 1;
-                }
-            }
-        }
-        if (nX == -1) {
-            System.out.println("Искомого числа нет в массиве");
-        } else {
-            System.out.println("Искомое число было найдено и равно " + nX);
-        }
-        return nX;
-    }
     public static int[] reverseElements(int[] v){
         for(int i = 0; i < v.length; i++){
             v[i] *=REVERSE_NUMBER;
