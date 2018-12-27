@@ -6,8 +6,15 @@ public class MainTask_01 {
         int n = UserInput.inputDataInt();
         int myVector[] = Vector.generateVector(n);
         Printer.print("Массив:" + Arrays.toString(myVector));
-        Vector.searchExtremeValues(myVector);
-        Vector.ArithmeticAndGeometricMean(myVector);
+
+        Printer.printMaxMinValues("Минимальный элемент массива: ", Vector.searchExtremeMin(myVector));
+        Printer.printMaxMinValues("Максимальный элемент массива: ", Vector.searchExtremeMax(myVector));
+
+        Printer.printArithmeticGeometricValues("Среднеарифметическое значение всех элементов: ",
+                Vector.arithmeticMean(myVector));
+        Printer.printArithmeticGeometricValues("Среднегеометрическое значение всех элементов: ",
+                Vector.geometricMean(myVector));
+
         if(Vector.isSortedVectorASC(myVector) | Vector.isSortedVectorDESC(myVector)){
             Printer.print("Массив отсортирован");
         }else {
@@ -25,9 +32,17 @@ public class MainTask_01 {
         }
         Printer.print("Введите число для поиска его в массиве: ");
         int searchElement = UserInput.inputDataInt();
-        int indexSerchedElement = Vector.searchElementLinear(myVector, searchElement);
-        if(indexSerchedElement != 0){
-            Printer.printLocalMinAndMAx("Найденный элемент находится на позиции: ", indexSerchedElement);
+        int indexSerchedElementLinear = Vector.searchElementLinear(myVector, searchElement);
+        int indexSerchedElementBinary = Vector.searchBinary(myVector, searchElement);
+        if(indexSerchedElementLinear != 0){
+            Printer.printLocalMinAndMAx("(Линейный поиск) Найденный элемент находится на позиции: ",
+                    indexSerchedElementLinear);
+        }else{
+            Printer.print("Не было найдено элементов");
+        }
+        if(indexSerchedElementBinary != 0){
+            Printer.printLocalMinAndMAx("(Бинарный поиск) Найденный элемент находится на позиции: ",
+                    indexSerchedElementBinary);
         }else{
             Printer.print("Не было найдено элементов");
         }
