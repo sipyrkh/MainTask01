@@ -80,25 +80,23 @@ public class Vector {
         }
         return 0;
     }
-    public static int searchBinary(int[] v, int s){
-        bubbleSort(v);
-        int currentIndex = 0;
-        int firstPart = 0;
-        int secondPart = v.length - 1;
-        while (firstPart <= secondPart) {
-            int k = (firstPart + secondPart) / 2;
-            if (v[k] == s) {
-                currentIndex = k;
-                return currentIndex;
+   public static int searchBinary(int[] v, int first, int last,int number){
+        int position = -1;
+        position = (first + last) / 2;
+
+        while ((v[position] != number) && (first <= last)) {
+            if (v[position] > number) {  // если число заданного для поиска
+                last = position - 1; // уменьшаем позицию на 1.
+            } else {
+                first = position + 1;    // иначе увеличиваем на 1
             }
-            else if (v[k] < s) {
-                secondPart = k - 1;
-            }
-            else if (v[k] > s) {
-                firstPart = k + 1;
-            }
+            position = (first + last) / 2;
         }
-        return currentIndex;
+        if (first <= last) {
+            return position;
+        } else {
+            return -1;
+        }
     }
     public static int[] reverseElements(int[] v){
         for(int i = 0; i < v.length; i++){
