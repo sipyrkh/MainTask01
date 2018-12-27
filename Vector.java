@@ -10,27 +10,33 @@ public class Vector {
         }
         return myVector;
     }
-    public static void searchExtremeValues(int[] v){
+    public static int searchExtremeMin(int[] v){
         int minValue = v[0];
-        int maxValue = minValue;
         for(int i = 0; i < v.length; i++){
-            if(v[i] > maxValue) maxValue=v[i];
             if(v[i] < minValue) minValue=v[i];
         }
-        Printer.printMaxMinValues("Минимальное и максимальное значения вектора: ", minValue, maxValue);
-
+        return minValue;
     }
-    public static void ArithmeticAndGeometricMean(int[] v){
+    public static int searchExtremeMax(int[] v){
+        int maxValue = v[0];
+        for(int i = 0; i < v.length; i++){
+            if(v[i] > maxValue) maxValue = v[i];
+        }
+        return maxValue;
+    }
+    public static double arithmeticMean(int[] v){
         double ArithmeticValue = 0;
-        double GeometricValue = 1;
         for(int i = 0; i < v.length; i++){
             ArithmeticValue +=v[i];
+        }
+        return ArithmeticValue/v.length;
+    }
+    public static double geometricMean(int[] v){
+        double GeometricValue = 1;
+        for(int i = 0; i < v.length; i++){
             GeometricValue *= v[i];
         }
-        ArithmeticValue /=v.length;
-        GeometricValue = Math.pow(GeometricValue, 1/v.length);
-        Printer.printArithmeticGeometricValues("Среднеарифметическое и среднегеометрическое значения вектора: ",
-                ArithmeticValue, GeometricValue);
+        return Math.pow(GeometricValue, 1.0/v.length);
     }
     public static boolean isSortedVectorDESC(int[] v) {
         for (int i = 0; i < v.length; i++) {
@@ -71,6 +77,26 @@ public class Vector {
             }
         }
         return 0;
+    }
+    public static int searchBinary(int[] v, int s){
+        bubbleSort(v);
+        int currentIndex = 0;
+        int firstPart = 0;
+        int secondPart = v.length - 1;
+        while (firstPart <= secondPart) {
+            int k = (firstPart + secondPart) / 2;
+            if (v[k] == s) {
+                currentIndex = k;
+                return currentIndex;
+            }
+            else if (v[k] < s) {
+                secondPart = k - 1;
+            }
+            else if (v[k] > s) {
+                firstPart = k + 1;
+            }
+        }
+        return currentIndex;
     }
     public static int[] reverseElements(int[] v){
         for(int i = 0; i < v.length; i++){
