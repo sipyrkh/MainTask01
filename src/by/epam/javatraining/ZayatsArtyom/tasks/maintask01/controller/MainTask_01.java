@@ -38,7 +38,7 @@ public class MainTask_01 {
         Printer.print("Введите число для поиска его в массиве: ");
         int searchElement = UserInput.inputDataInt();
         int indexSerchedElementLinear = Vector.searchElementLinear(myVector, searchElement);
-        int indexSerchedElementBinary = Vector.searchBinary(myVector, searchElement);
+        int indexSerchedElementBinary = Vector.searchBinary(myVector, 0, myVector.length-1, searchElement);
         if(indexSerchedElementLinear != 0){
             Printer.printLocalMinAndMAx("(Линейный поиск) Найденный элемент находится на позиции: ",
                     indexSerchedElementLinear);
